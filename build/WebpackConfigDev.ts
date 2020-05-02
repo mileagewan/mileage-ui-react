@@ -11,7 +11,7 @@ export class WebpackConfigDev implements Config {
     path.join(process.cwd(), '/build/run.js'),
   ];
   output: Output = {
-    filename: 'bundle.js',
+    filename: 'app.js',
     path: path.join(__dirname, 'distDev'),
   };
   plugins: Array<any> = [new webpack.HotModuleReplacementPlugin()];
