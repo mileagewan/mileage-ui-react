@@ -13,6 +13,7 @@ export interface Rule {
   loader?: string;
   include?: any[];
   user?: string[];
+  enforce?: string;
 }
 
 export interface Config {

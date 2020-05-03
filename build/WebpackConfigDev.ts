@@ -2,24 +2,34 @@ import { Output, Resolve, Config } from '../interface/webpack/index';
 const path: any = require('path');
 const webpack: any = require('webpack');
 export class WebpackConfigDev implements Config {
-  devtool: string = 'eval';
+  devtool: string = 'cheap-module-eval-source-map';
   mode: string = 'development';
   entry: string[] = [
     // 'webpack-dev-server/client?http://localhost:8888',
     // 'webpack/hot/only-dev-server',
     // 'react-hot-loader/patch',/
-    path.join(process.cwd(), '/build/run.js'),
+    path.join(process.cwd(), '/src/index.tsx'),
   ];
+
   output: Output = {
     filename: 'app.js',
     path: path.join(__dirname, 'distDev'),
   };
   plugins: Array<any> = [new webpack.HotModuleReplacementPlugin()];
   resolve: Resolve = {
-    extensions: ['js', '.jsx', '.ts'],
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
   };
   module = {
     rules: [
+      {
+        test: /\.(tsx|ts)?$/,
+        // loader: 'ts-loader',
+        loader: 'awesome-typescript-loader',
+      },
+      {
+        test: /\.js$/,
+        loader: 'source-map-loader',
+      },
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
