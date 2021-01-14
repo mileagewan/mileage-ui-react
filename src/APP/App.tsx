@@ -36,3 +36,8 @@ export class App extends React.Component {
     return <MileageButtonReact text="213" />;
   }
 }
+declare global {
+  interface Window { App: any; }
+}
+
+window.App = App

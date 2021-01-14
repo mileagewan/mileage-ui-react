@@ -7,7 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "tsc ./build/webpack.dev.ts --outDir bundle && node ./bundle/build/webpack.dev.js"
+    "dev": "tsc ./build/webpack.dev.ts --outDir bundle && node ./bundle/build/webpack.dev.js",
+    "dist": "tsc ./build/webpack.prod.ts --outDir bundle && webpack --config  ./bundle/build/webpack.prod.js"
   },
   "eslintConfig": {
     "extends": "react-app"
