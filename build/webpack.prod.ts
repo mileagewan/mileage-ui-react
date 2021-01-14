@@ -1,16 +1,17 @@
 import { Output, Resolve, Config } from '../interface/webpack/index';
 const path: any = require('path');
 const webpack: any = require('webpack');
+const components = require(path.join(process.cwd(), '/src/package/component.json'));
+let entrys: any = {};
+for (const k in components) {
+  entrys[k] = path.join(process.cwd(), components[k]);
+}
+console.log(entrys)
 class WebpackProd implements Config {
-  entry: string[] = [
-    // 'webpack-dev-server/client?http://localhost:8888',
-    // 'webpack/hot/only-dev-server',
-    // 'react-hot-loader/patch',/
-    path.join(process.cwd(), '/src/APP/App.tsx'),
-  ];
+  entry: any = entrys;
 
   output: Output = {
-    filename: 'app.js',
+    filename: '[name].js',
     path: path.join(__dirname, 'prod'),
   };
   plugins: Array<any> = [new webpack.HotModuleReplacementPlugin()];
@@ -21,6 +22,7 @@ class WebpackProd implements Config {
     react: 'React',
     'react-dom': 'ReactDom'
   };
+  mode: string = 'production';
   module = {
     rules: [
       {
