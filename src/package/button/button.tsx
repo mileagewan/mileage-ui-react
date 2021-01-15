@@ -1,6 +1,6 @@
 /// <reference path='../namespace/ValidationButton.ts' />
 import * as React from 'react';
-
+import 'style-loader!css-loader!less-loader!../theme/Button.less';
 export class MileageButtonReact extends React.Component {
   public state: Validation.ButtonState;
   public props: Validation.ButtonProps;
@@ -23,7 +23,7 @@ export class MileageButtonReact extends React.Component {
   public click = (): void => {
     let value: string | Function = this.state.value;
     this.setState({
-      value: value += '1',
+      value: (value += '1'),
     });
   };
 }

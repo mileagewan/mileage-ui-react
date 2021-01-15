@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "outDir": "./bundle/",
     "sourceMap": true,
     "noImplicitAny": true,
@@ -8,12 +9,6 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "./src/**/*",
-    "./build/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ],
+  "include": ["./src/**/*", "./build/*.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

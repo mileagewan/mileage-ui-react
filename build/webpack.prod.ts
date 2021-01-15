@@ -1,12 +1,16 @@
 import { Output, Resolve, Config } from '../interface/webpack/index';
 const path: any = require('path');
 const webpack: any = require('webpack');
-const components = require(path.join(process.cwd(), '/src/package/component.json'));
+const miniCss: any = require('mini-css-extract-plugin');
+const components = require(path.join(
+  process.cwd(),
+  '/src/package/component.json'
+));
 let entrys: any = {};
 for (const k in components) {
   entrys[k] = path.join(process.cwd(), components[k]);
 }
-console.log(entrys)
+console.log(entrys);
 class WebpackProd implements Config {
   entry: any = entrys;
 
@@ -14,13 +18,18 @@ class WebpackProd implements Config {
     filename: '[name].js',
     path: path.join(__dirname, 'prod'),
   };
-  plugins: Array<any> = [new webpack.HotModuleReplacementPlugin()];
+  plugins: Array<any> = [
+    new webpack.HotModuleReplacementPlugin(),
+    new miniCss({
+      filename: '[name].css',
+    }),
+  ];
   resolve: Resolve = {
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
   };
   externals: any = {
     react: 'React',
-    'react-dom': 'ReactDom'
+    'react-dom': 'ReactDom',
   };
   mode: string = 'production';
   module = {
@@ -28,7 +37,7 @@ class WebpackProd implements Config {
       {
         test: /\.(tsx|ts)?$/,
         // loader: 'ts-loader',
-        loader: 'awesome-typescript-loader',
+        use: ['awesome-typescript-loader'],
       },
       {
         test: /\.js$/,
@@ -41,11 +50,15 @@ class WebpackProd implements Config {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [miniCss.loader, 'css-loader'],
+      },
+      {
+        test: /\.less$/,
+        use: [miniCss.loader, 'css-loader', 'less-loader'],
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [miniCss.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,

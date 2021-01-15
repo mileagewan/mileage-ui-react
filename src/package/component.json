@@ -1,3 +1,4 @@
 {
-  "Button": "/src/package/button/button.tsx"
+  "Button": "/src/package/Button/Button.tsx",
+  "Index": "/src/package//Index.tsx"
 }
