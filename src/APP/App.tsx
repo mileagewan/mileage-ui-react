@@ -23,6 +23,7 @@
 //   );
 // }
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { MileageButtonReact } from '../package/index';
 import 'style-loader!css-loader!less-loader!./App.less';
 const marked = require('marked');
@@ -39,16 +40,24 @@ export class App extends React.Component {
       text: '按钮',
     };
   }
+  componentDidMount() {
+    this.components.forEach((v: any, k: number) => {
+      const codeRevice: HTMLElement = document.getElementById(String(k));
+      ReactDOM.render(v, codeRevice);
+    });
+  }
   render(): JSX.Element {
     const _this = this;
     const __html = marked(
       test.replace(
         /:::[^]+demo[^]+```js([^]+)```[^]+:::/,
         function (match: string, p1: string, offset: number) {
+          debugger;
           _this.components.set(
             offset,
-            React.createElement(Template, { name: test }, p1)
+            React.createElement(Template, { name: 'testbyone' }, p1)
           );
+          return `<div id=${offset.toString()}></div>`;
         }
       ),
       {
@@ -56,7 +65,7 @@ export class App extends React.Component {
       }
     );
     // return <MileageButtonReact text="213" />;
-    return <div dangerouslySetInnerHTML={{ __html: marked(test) }}></div>;
+    return <div dangerouslySetInnerHTML={{ __html: marked(__html) }}></div>;
   }
 }
 declare global {
