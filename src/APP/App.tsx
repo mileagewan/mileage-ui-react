@@ -48,22 +48,21 @@ export class App extends React.Component {
   }
   render(): JSX.Element {
     const _this = this;
-    const __html = marked(
-      test.replace(
-        /:::[^]+demo[^]+```js([^]+)```[^]+:::/,
-        function (match: string, p1: string, offset: number) {
-          debugger;
-          _this.components.set(
-            offset,
-            React.createElement(Template, { name: 'testbyone' }, p1)
-          );
-          return `<div id=${offset.toString()}></div>`;
-        }
-      ),
-      {
-        renderer: this.renderer,
+    let replaceTest: string = test.replace(
+      /:::[^]+demo[^]+```js([^]+)```[\r\n]+:::/,
+      function (match: string, p1: string, offset: number) {
+        debugger;
+        _this.components.set(
+          offset,
+          React.createElement(Template, { name: 'testbyone' }, p1)
+        );
+        return `<div id=${offset.toString()}></div>`;
       }
     );
+    debugger;
+    const __html = marked(replaceTest, {
+      renderer: this.renderer,
+    });
     // return <MileageButtonReact text="213" />;
     return <div dangerouslySetInnerHTML={{ __html: marked(__html) }}></div>;
   }
@@ -71,6 +70,8 @@ export class App extends React.Component {
 declare global {
   interface Window {
     App: any;
+    React: any;
+    ReactDOM: any;
   }
 }
 

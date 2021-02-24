@@ -12,10 +12,7 @@
 render() {
   return (
     <div>
-      <Alert title="成功提示的文案" type="success" />
-      <Alert title="消息提示的文案" type="info" />
-      <Alert title="警告提示的文案" type="warning" />
-      <Alert title="错误提示的文案" type="error" />
+      123123123123123123123132
     </div>
   )
 }
@@ -33,9 +30,7 @@ render() {
 render() {
   return (
     <div>
-      <Alert title="不可关闭的 alert" type="success" closable={false} />
-      <Alert title="自定义 close-text" type="info" closeText="知道了" />
-      <Alert title="设置了回调的 alert" type="warning" onClose={() => alert('Hello World!')}/>
+       123123123123123123123132
     </div>
   )
 }
@@ -53,10 +48,7 @@ render() {
 render() {
   return (
     <div>
-      <Alert title="成功提示的文案" type="success" showIcon={true} />
-      <Alert title="消息提示的文案" type="info" showIcon={true} />
-      <Alert title="警告提示的文案" type="warning" showIcon={true} />
-      <Alert title="错误提示的文案" type="error" showIcon={true} />
+       123123123123123123123132
     </div>
   )
 }
@@ -73,10 +65,7 @@ render() {
 ```js
 render() {
   return (
-    <Alert
-      type="success"
-      title="带辅助性文字介绍"
-      description="这是一句绕口令：黑灰化肥会挥发发灰黑化肥挥发；灰黑化肥会挥发发黑灰化肥发挥。 黑灰化肥会挥发发灰黑化肥黑灰挥发化为灰……" />
+     123123123123123123123132
   )
 }
 ```
@@ -91,10 +80,7 @@ render() {
 render() {
   return (
     <div>
-      <Alert title="成功提示的文案" type="success" description="文字说明文字说明文字说明文字说明文字说明文字说明"  showIcon={true} />
-      <Alert title="消息提示的文案" type="info" description="文字说明文字说明文字说明文字说明文字说明文字说明" showIcon={true} />
-      <Alert title="警告提示的文案" type="warning" description="文字说明文字说明文字说明文字说明文字说明文字说明" showIcon={true} />
-      <Alert title="错误提示的文案" type="error" description="文字说明文字说明文字说明文字说明文字说明文字说明" showIcon={true} />
+      123123123123123123123132
     </div>
   )
 }
