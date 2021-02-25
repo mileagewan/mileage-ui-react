@@ -48,18 +48,23 @@ export class App extends React.Component {
   }
   render(): JSX.Element {
     const _this = this;
-    let replaceTest: string = test.replace(
-      /:::[^]+demo[^]+```js([^]+)```[\r\n]+:::/,
-      function (match: string, p1: string, offset: number) {
-        debugger;
-        _this.components.set(
-          offset,
-          React.createElement(Template, { name: 'testbyone' }, p1)
-        );
-        return `<div id=${offset.toString()}></div>`;
-      }
-    );
-    debugger;
+    const mdString: string[] = test.split('========');
+    console.log(mdString);
+    let replaceTest: string = mdString.reduce((pre: string, md: string) => {
+      return (
+        pre +
+        md.replace(
+          /:::[^]+demo[^]+```js([^]+)```[\r\n]+:::/,
+          function (match: string, p1: string, offset: number) {
+            _this.components.set(
+              offset,
+              React.createElement(Template, { name: 'testbyone' }, p1)
+            );
+            return `<div id=${offset.toString()}></div>`;
+          }
+        )
+      );
+    }, '');
     const __html = marked(replaceTest, {
       renderer: this.renderer,
     });

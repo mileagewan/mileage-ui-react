@@ -4,8 +4,8 @@ const marked: any = require('marked');
 import { TemplateImp } from '../interface/TemplateImp';
 import { transform } from 'babel-standalone';
 declare const Demo: any;
-window.React = React;
-window.ReactDOM = ReactDOM;
+// window.React = React;
+// window.ReactDOM = ReactDOM;
 export class Template extends React.Component implements TemplateImp {
   source: string = '';
 
@@ -29,7 +29,10 @@ export class Template extends React.Component implements TemplateImp {
         presets: ['es2015', 'react'],
       }
     ).code;
-    new Function(this.source)();
+    new Function(...['React', 'ReactDOM', this.source]).apply(null, [
+      React,
+      ReactDOM,
+    ]);
   }
 
   render(): JSX.Element {
